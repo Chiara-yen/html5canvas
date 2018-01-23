@@ -30,7 +30,8 @@ function canvasApp() {
 		
   function  drawScreen () {
 
-		
+				
+		// context.fillStyle = points.length % 2 == 0 ? '#0000ff': '#ffff00';
 		context.fillStyle = '#EEEEEE';
 		context.fillRect(0, 0, theCanvas.width, theCanvas.height);
 		//Box
@@ -45,6 +46,8 @@ function canvasApp() {
 			moves--;
 			ball.x += xunits;
 			ball.y += yunits;
+			console.log('moves =>', moves);
+			// console.log('ball.x, ball.y =>', ball.x, ball.y);
 		}
 		
 		//Draw points to illustrate path
@@ -61,6 +64,7 @@ function canvasApp() {
 		
 		context.fillStyle = "#000000";
 		context.beginPath();
+		// arc(x, y, radius, startAngle, endAngle, anticlockwise)
 		context.arc(ball.x,ball.y,15,0,Math.PI*2,true);
 		context.closePath();
 		context.fill();
@@ -68,8 +72,8 @@ function canvasApp() {
   			
 	}
 	var speed = 5;
-	var p1 = {x:20,y:250};
-	var p2 = {x:480,y:250};
+	var p1 = {x:20,y:150};
+	var p2 = {x:480,y:350};
 	var dx = p2.x - p1.x;
 	var dy = p2.y - p1.y;
 	var distance = Math.sqrt(dx*dx + dy*dy);

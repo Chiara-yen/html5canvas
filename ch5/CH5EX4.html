@@ -20,6 +20,11 @@ function canvasApp() {
 			 return;
   		}
 	
+	var pointImage = new Image();
+  pointImage.src = "point.png";
+
+	var ballRadius = 15;
+
   function  drawScreen () {
 		context.fillStyle = '#EEEEEE';
 		context.fillRect(0, 0, theCanvas.width, theCanvas.height);
@@ -30,22 +35,35 @@ function canvasApp() {
 		ball.y += yunits;
 		context.fillStyle = "#000000";
 		context.beginPath();
-		context.arc(ball.x,ball.y,15,0,Math.PI*2,true);
+		// arc(x, y, radius, startAngle, endAngle, anticlockwise)
+		context.arc(ball.x,ball.y,ballRadius,0,Math.PI*2,true);
 		context.closePath();
 		context.fill();
 		
-		if (ball.x > theCanvas.width || ball.x < 0 ) {
+		if (ball.x + ballRadius > theCanvas.width || ball.x - ballRadius < 0 ) {
 			angle = 180 - angle;
 			updateBall();
-		} else if (ball.y > theCanvas.height || ball.y < 0) {
+		} else if (ball.y + ballRadius > theCanvas.height || ball.y - ballRadius < 0) {
 			angle = 360 - angle;
 			updateBall(); 
 		}
   			
+		//Draw points to illustrate path
+		
+		if (points.length >= 50) {
+			points.shift();
+		}
+		points.push({x:ball.x,y:ball.y});
+		
+		for (var i= 0; i< points.length; i++) {
+			context.drawImage(pointImage, points[i].x, points[i].y,1,1);
+		}
 	}
 	
 	function updateBall() {
 		radians = angle * Math.PI/ 180;
+		console.log('angle =>', angle);
+		// console.log('radians =>', radians);
 		xunits = Math.cos(radians) * speed;
 		yunits = Math.sin(radians) * speed;
 	}
@@ -57,6 +75,7 @@ function canvasApp() {
 	var xunits = 0;
 	var yunits = 0; 
 	var ball = {x:p1.x, y:p1.y};
+	var points = new Array();
 	updateBall();
 	
     theCanvas = document.getElementById('canvasOne');

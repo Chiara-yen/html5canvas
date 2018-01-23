@@ -23,7 +23,7 @@ function canvasApp() {
   function  drawScreen () {
 
 		context.fillStyle = '#EEEEEE';
-		context.fillRect(0, 0, theCanvas.width, theCanvas.height);
+		context.fillRect(0, 0, theCanvas.width - 2, theCanvas.height - 2);
 		//Box
 		context.strokeStyle = '#000000'; 
 		context.strokeRect(1,  1, theCanvas.width-2, theCanvas.height-2);
@@ -62,7 +62,7 @@ function canvasApp() {
 	
 	}
 	
-	var numBalls = 100 ;
+	var numBalls = 200 ;
 	var maxSize = 8;
 	var minSize = 5;
 	var maxSpeed = maxSize+5;
@@ -79,7 +79,7 @@ function canvasApp() {
 	
 	theCanvas = document.getElementById('canvasOne');
 	context = theCanvas.getContext('2d');
-	
+
 	for (var i = 0; i < numBalls; i++) {
 		tempRadius = Math.floor(Math.random()*maxSize)+minSize;
 		tempX = tempRadius*2 + (Math.floor(Math.random()*theCanvas.width)-tempRadius*2);
