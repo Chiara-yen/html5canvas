@@ -1,0 +1,3 @@
+- [box2dweb](https://github.com/hecht-software/box2dweb)
+- [box2d demo](http://lib.ivank.net/?p=demos&d=box2D)
+- [Box2d – 用JavaScript構建物理世界](http://jdc.jd.com/archives/2110)
